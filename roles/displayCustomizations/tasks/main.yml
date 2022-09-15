@@ -1,0 +1,37 @@
+
+- name: copy wallpaper file
+  copy: 
+    src: files/wallpaper.jpg
+    dest: /usr/share/backgrounds/ansible-wallpaper.jpg
+    owner: root
+    group: root
+  
+- name: set wallpaper
+  become_user: ldraney
+  dconf: 
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///usr/share/backgrounds/ansible-wallpaper.jpg'"
+
+- name: set wallpaper position
+  become_user: ldraney
+  dconf:
+    key: "/org/gnome/desktop/background/picture-options"
+    value: "'zoom'"
+
+#added Regolith, IDK how the above still work in regolith lol
+#- name: set login screen image
+  #become_user: ldraney
+  #copy: 
+    #src: files/login.jpg
+    #dest: /home/ldraney/.config/regolith-look
+
+- name: change login background image
+  ansible.builtin.copy:
+    src: '/home/ldraney/github/ansible_desktop_setup/files/login.jpg'
+    dest: '/usr/share/backgrounds/pia21972.png'
+    #state: link
+    #force: true
+    mode: '0644'
+  #loop:
+    #- { src: '', dest: '.customCommands' }
+

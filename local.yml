@@ -1,0 +1,29 @@
+---
+
+- hosts: localhost
+  #collections:
+    #- ansible.posix
+  connection: local
+  become: true
+  #tasks: 
+    #- name: Update apt-get repo and cache
+      #apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+    #- name: Upgrade all apt packages
+      #apt: upgrade=dist force_apt_get=yes
+  #tasks:
+    #- name: Include task list in play
+      #ansible.builtin.include_tasks: roles/base/tasks/main.yml
+  #strategy: free
+  #gather_facts: False
+  roles:
+    - base
+    - displayCustomizations
+    - docker
+    - dotfiles
+
+  vars: 
+    docker_files:
+      - docker-ce-cli_20.10.17~3-0~ubuntu-jammy_amd64.deb
+      - containerd.io_1.6.8-1_amd64.deb
+      - docker-ce_20.10.17~3-0~ubuntu-jammy_amd64.deb
+      - docker-compose-plugin_2.6.0~ubuntu-jammy_amd64.deb

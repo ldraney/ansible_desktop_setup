@@ -1,0 +1,134 @@
+
+#make sure git is installed
+- name: install git
+  package: 
+    name: 
+      - git
+
+  #clone dotfiles repo and symlink my files
+- name: clone dotfiles
+  ignore_errors: yes
+  become_user: ldraney
+  ansible.builtin.git:
+    repo: 'ssh://git@github.com/ldraney/dotfiles.git'
+    clone: yes
+    dest: /home/ldraney/github/dotfiles
+    key_file: /home/ldraney/.ssh/id_ed25519
+    accept_hostkey: yes
+
+- name: clone ssh_keys
+  ignore_errors: yes
+  become_user: ldraney
+  ansible.builtin.git:
+    repo: 'ssh://git@github.com/ldraney/sensitive.git'
+    clone: yes
+    dest: /home/ldraney/github/sensitive
+    key_file: /home/ldraney/.ssh/id_ed25519
+    accept_hostkey: yes
+
+- name: remove files to make room for new symlinks
+  file: 
+    path: '/home/ldraney/.oh-my-zsh'
+    state: absent
+
+- name: dotfile symbolic links to user config
+  ansible.builtin.file:
+    src: '/home/ldraney/github/dotfiles/{{ item.src }}'
+    dest: '/home/ldraney/{{ item.dest }}'
+    state: link
+    force: true
+  loop:
+    - { src: 'nvim/', dest: '.config/nvim' }
+    - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
+    - { src: 'zsh/zshrc', dest: '.zshrc' }
+    - { src: 'zsh/oh-my-zsh', dest: '.oh-my-zsh' }
+    - { src: 'environment/warprc', dest: '.warprc' }
+    - { src: 'zsh/zsh_history', dest: '.zsh_history' }
+    - { src: 'git/gitconfig', dest: '.gitconfig' }
+    - { src: 'zsh/zshenv', dest: '.zshenv' }
+    - { src: 'customCommands', dest: '.customCommands' }
+
+- name: sensitive files symlinks
+  ansible.builtin.file:
+    src: '/home/ldraney/github/sensitive/{{ item.src }}'
+    dest: '/home/ldraney/{{ item.dest }}'
+    state: link
+    force: true
+  loop:
+    - { src: 'zsh/zsh_history', dest: '.zsh_history' }
+    - { src: 'zsh/zshenv', dest: '.zshenv' }
+    - { src: 'vim', dest: '.vim' }
+    #- { src: 'customCommands', dest: '.customCommands' }
+
+- name: copy and eval ssh keys
+  file: 
+    src: /home/ldraney/github/sensitive/ssh
+    dest: /home/ldraney/.ssh
+    state: link
+    force: true
+#- name: add ssh keys
+  #authorized_key:
+    #user: ldraney
+    #state: present
+    #key: "{{ lookup('file'), item }}"
+  #with_file:
+    #- /home/ldraney/.ssh/id_ed25519.pub
+    #- /home/ldraney/.ssh/id_rsa.pub
+- name: Evaluating the authentication agent & adding the keys...
+  shell: |
+    eval "$(ssh-agent)"
+    ssh-add ~/.ssh/id_rsa
+    ssh-add ~/.ssh/id_ed25519
+
+- name: neovim root link
+  ansible.builtin.file:
+    src: '/home/ldraney/github/dotfiles/{{ item.src }}'
+    dest: '/{{ item.dest }}'
+    state: link
+  loop:
+    - { src: 'nvim/nvim-linux64/bin/nvim', dest: 'usr/bin/vim' }
+
+- name: change user shell to zsh (needs restart to be effective)
+  become: yes
+  user:
+    name: "ldraney"
+    shell: /bin/zsh
+
+# install neovim plugins
+- name: make autoload directory for neovim
+  become_user: ldraney
+  ansible.builtin.file:
+    path: /home/ldraney/.local/share/nvim/site/autoload
+    state: directory
+    mode: '0755'
+- name: install neovim plugin manager from junegunn
+  become_user: ldraney
+  ansible.builtin.get_url:
+    dest: /home/ldraney/.local/share/nvim/site/autoload/plug.vim
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+- name: install plugins
+  become_user: ldraney
+    #shell: 'vim --cmd +PlugInstall +qall'
+  shell: 'vim --headless +PlugInstall +qall'
+
+
+
+
+
+
+
+#
+#- name: configure git
+  #become_user: ldraney
+  #git_config:
+    #name: core.editor
+    #scope: global
+    #value: vim
+  #git_config:
+    #name: user.email
+    #scope: global
+    #value: draneylucas@gmail.com
+  #git_config:
+    #name: user.name
+    #scope: global
+    #value: ldraney
