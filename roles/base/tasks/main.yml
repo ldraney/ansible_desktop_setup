@@ -87,7 +87,7 @@
 - name: Download Chrome
   get_url:
     url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    dest: ~
+    dest: /home/ldraney
 - name: install Chrome
   dpkg_selections:
     name: chrome/google-chrome-stable_current_amd64.deb
