@@ -87,10 +87,10 @@
 - name: Download Chrome
   get_url:
     url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    dest: ~/chrome
+    dest: ~
 - name: install Chrome
   dpkg_selections:
-    name: ~/chrome/google-chrome-stable_current_amd64.deb
+    name: chrome/google-chrome-stable_current_amd64.deb
     selection: install
 
 - name: Install required system packages for docker
