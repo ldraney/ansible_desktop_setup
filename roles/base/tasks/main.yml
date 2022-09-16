@@ -41,43 +41,42 @@
 - name: install packages
   apt: 
     update_cache: true
-    package: 
-      name: 
-        - htop
-        - tmux
-        - python3-psutil #for dconf
-        - git
-        - zsh
-        - curl
-        - mlocate
-        - xclip
-        - wget
-        - make
-        - feh
-        - tree
-        #snap comes anyway with upgrade and is convenient for kubectl
-        - snapd         
-        #for ansible apt install deb for docker
-        - xz-utils
-        #aws stuff
-        - make 
-        - build-essential 
-        - libssl-dev 
-        - zlib1g-dev 
-        - libbz2-dev
-        - libreadline-dev
-        - libsqlite3-dev 
-        - wget 
-        - llvm 
-        - libncursesw5-dev 
-        - xz-utils 
-        - tk-dev 
-        - libxml2-dev 
-        - libxmlsec1-dev 
-        - libffi-dev 
-        - liblzma-dev 
-        # for setBackground for login script
-        - libglib2.0-dev-bin
+    pkg: 
+      - htop
+      - tmux
+      - python3-psutil #for dconf
+      - git
+      - zsh
+      - curl
+      - mlocate
+      - xclip
+      - wget
+      - make
+      - feh
+      - tree
+      #snap comes anyway with upgrade and is convenient for kubectl
+      - snapd         
+      #for ansible apt install deb for docker
+      - xz-utils
+      #aws stuff
+      - make 
+      - build-essential 
+      - libssl-dev 
+      - zlib1g-dev 
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev 
+      - wget 
+      - llvm 
+      - libncursesw5-dev 
+      - xz-utils 
+      - tk-dev 
+      - libxml2-dev 
+      - libxmlsec1-dev 
+      - libffi-dev 
+      - liblzma-dev 
+      # for setBackground for login script
+      - libglib2.0-dev-bin
 #what was this for? 
 #- name: Install aptitude
   #apt:
