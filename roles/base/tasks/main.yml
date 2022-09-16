@@ -39,6 +39,7 @@
     - cli_tools
     
 - name: install packages
+  update_cache: true
   package: 
     name: 
       - htop
