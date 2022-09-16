@@ -90,7 +90,7 @@
     dest: '/home/ldraney'
 - name: install Chrome
   dpkg_selections:
-    name: chrome/google-chrome-stable_current_amd64.deb
+    name: google-chrome-stable_current_amd64.deb
     selection: install
 
 - name: Install required system packages for docker
