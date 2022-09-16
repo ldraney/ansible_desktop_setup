@@ -120,11 +120,11 @@
     key_file: /home/ldraney/.ssh/id_ed25519
     accept_hostkey: yes
 
-- name: Snap installations
-  community.general.snap:
-    name:
-      - kubectl
-    classic: yes
+# - name: Snap installations
+#   community.general.snap:
+#     name:
+#       - kubectl
+#     classic: yes
 
 # install AWS CLI
 # for testing uses these commands to uninstall aws cli:
