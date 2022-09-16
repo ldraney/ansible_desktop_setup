@@ -76,11 +76,24 @@
       - liblzma-dev 
       # for setBackground for login script
       - libglib2.0-dev-bin
-- name: Install aptitude
-  apt:
-    name: aptitude
-    state: latest
-    update_cache: true
+#what was this for? 
+#- name: Install aptitude
+  #apt:
+    #name: aptitude
+    #state: latest
+    #update_cache: true
+    #
+
+- name: Download Chrome
+  get_url:
+    url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    dest: ~/chrome
+- name: install Chrome
+  dpkg_selections:
+    name: ~/chrome/google-chrome-stable_current_amd64.deb
+    selection: isntall
+
+
 
 - name: Install required system packages for docker
   apt:
