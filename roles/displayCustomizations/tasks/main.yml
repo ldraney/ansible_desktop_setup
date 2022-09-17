@@ -55,4 +55,4 @@
     value: '{{ item.value }}'
     #state: present
   loop:
-    - { profile: 'use-transparent-background', value: true }
+    - { profile: 'use-transparent-background', value: 'true' }
