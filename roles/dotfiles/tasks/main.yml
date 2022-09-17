@@ -44,6 +44,7 @@
       #    - /home/ldraney/.ssh
 
 - name: dotfile symbolic links to user config
+  become_user: ldraney
   ansible.builtin.file:
     src: '/home/ldraney/github/dotfiles/{{ item.src }}'
     dest: '/home/ldraney/{{ item.dest }}'
