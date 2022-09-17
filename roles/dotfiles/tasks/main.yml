@@ -47,6 +47,7 @@
   ansible.builtin.file:
     owner: ldraney
     group: ldraney
+    follow: false
     src: '/home/ldraney/github/dotfiles/{{ item.src }}'
     dest: '/home/ldraney/{{ item.dest }}'
     state: link
