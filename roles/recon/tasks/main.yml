@@ -1,0 +1,19 @@
+
+- name: mkdir for recon 
+  become_user: ldraney
+  file:
+    path: /home/ldraney/recon/tv/
+    #type: dir
+    state: present
+
+
+- name: clone recon repos
+  ignore_errors: yes
+  become_user: ldraney
+  ansible.builtin.git:
+    #repo: 'ssh://git@github.com/ldraney/dotfiles.git'
+    repo: 'ssh://git@vpn.recondynamics.com:2225/tvapi.git'
+    clone: yes
+    dest: /home/ldraney/recon/tv/
+    key_file: /home/ldraney/.ssh/id_rsa
+    accept_hostkey: yes
