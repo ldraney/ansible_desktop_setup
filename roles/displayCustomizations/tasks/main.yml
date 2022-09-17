@@ -29,9 +29,9 @@
     state: link
     #owner: root
     #group: root
-    #owner: ldraney
-    #follow: false
-    #group: ldraney
+    follow: false
+    owner: ldraney
+    group: ldraney
     src: '/home/ldraney/github/ansible_desktop_setup/look'
     dest: '/usr/share/regolith-look/gruvboxCustom'
 
