@@ -25,13 +25,7 @@
     mode: '0644'
 
 - name: add symlink to regolith theme
-  file:
-    state: link
-    owner: root
-    group: root
-    follow: false
-    #owner: ldraney
-    #group: ldraney
+  copy:
     src: '/home/ldraney/github/ansible_desktop_setup/look'
     dest: '/usr/share/regolith-look/gruvboxCustom'
 
@@ -40,5 +34,5 @@
   ignore_errors: yes
   shell:
     #cmd: regolith-look set gruvboxCustom
-    cmd: regolith-look set gruvbox
+    cmd: regolith-look set gruvboxCustom
 
