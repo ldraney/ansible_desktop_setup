@@ -27,8 +27,8 @@
 - name: add symlink to regolith theme
   file:
     state: link
-    owner: root
-    group: root
+    #owner: root
+    #group: root
     #owner: ldraney
     #follow: false
     #group: ldraney
