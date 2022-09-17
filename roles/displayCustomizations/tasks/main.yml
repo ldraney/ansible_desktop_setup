@@ -18,20 +18,9 @@
     key: "/org/gnome/desktop/background/picture-options"
     value: "'zoom'"
 
-#added Regolith, IDK how the above still work in regolith lol
-#- name: set login screen image
-  #become_user: ldraney
-  #copy: 
-    #src: files/login.jpg
-    #dest: /home/ldraney/.config/regolith-look
-
 - name: change login background image
   ansible.builtin.copy:
     src: '/home/ldraney/github/ansible_desktop_setup/files/login.jpg'
     dest: '/usr/share/backgrounds/pia21972.png'
-    #state: link
-    #force: true
     mode: '0644'
-  #loop:
-    #- { src: '', dest: '.customCommands' }
 

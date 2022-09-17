@@ -1,9 +1,8 @@
-
 #make sure git is installed
-# - name: install git
-#   package: 
-#     name: 
-#       - git
+ - name: install git
+   package: 
+     name: 
+       - git
       
 - name: make directory for dotfiles
   become_user: ldraney
@@ -13,11 +12,7 @@
     state: directory
     mode: '0755'
   with_items:
-    #- deb_packages # 
     - .local/share/nvim/site/autoload
-#     - .local/share/nvim
-#     - .local/share/nvim/site
-#     - .local/share/nvim/site/autoload/
 
   #clone dotfiles repo and symlink my files
 - name: clone dotfiles
@@ -75,29 +70,18 @@
     - { src: 'zsh/zsh_history', dest: '.zsh_history' }
     - { src: 'zsh/zshenv', dest: '.zshenv' }
     - { src: 'vim', dest: '.vim' }
-    #- { src: 'customCommands', dest: '.customCommands' }
-
-# - name: copy and eval ssh keys
-#   ignore_errors: yes
-#   file: 
-#     src: /home/ldraney/github/sensitive/ssh
-#     dest: /home/ldraney/.ssh
-#     state: link
-#     force: true
-#- name: add ssh keys
-  #authorized_key:
-    #user: ldraney
-    #state: present
-    #key: "{{ lookup('file'), item }}"
-  #with_file:
-    #- /home/ldraney/.ssh/id_ed25519.pub
-    #- /home/ldraney/.ssh/id_rsa.pub
-# - name: Evaluating the authentication agent & adding the keys...
-#   become_user: ldraney
-#   shell: |
-#     eval "$(ssh-agent)"
-#     ssh-add ~/.ssh/id_rsa
-#     ssh-add ~/.ssh/id_ed25519
+    - { src: 'ssh', dest: '.ssh' }
+- name: chmod 400 ssh
+  file:
+    path: /home/ldraney/.ssh
+    mode: '0400'
+    recurse: yes
+ - name: Evaluating the authentication agent & adding the keys...
+   become_user: ldraney
+   shell: |
+     eval "$(ssh-agent)"
+     ssh-add ~/.ssh/id_rsa
+     ssh-add ~/.ssh/id_ed25519
 
 - name: neovim root link
   ignore_errors: yes
@@ -129,27 +113,5 @@
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 - name: install plugins
   become_user: ldraney
-    #shell: 'vim --cmd +PlugInstall +qall'
   shell: 'vim --headless +PlugInstall +qall'
 
-
-
-
-
-
-
-#
-#- name: configure git
-  #become_user: ldraney
-  #git_config:
-    #name: core.editor
-    #scope: global
-    #value: vim
-  #git_config:
-    #name: user.email
-    #scope: global
-    #value: draneylucas@gmail.com
-  #git_config:
-    #name: user.name
-    #scope: global
-    #value: ldraney
