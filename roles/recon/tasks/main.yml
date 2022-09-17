@@ -4,7 +4,7 @@
   file:
     path: /home/ldraney/recon/tv/
     #type: dir
-    state: present
+    state: directory
 
 
 - name: clone recon repos
