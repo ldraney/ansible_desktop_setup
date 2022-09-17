@@ -37,6 +37,7 @@
 
 - name: regolith-look command
   become_user: ldraney
+  ignore_errors: yes
   shell:
     cmd: regolith-look set gruvboxCustom
 
