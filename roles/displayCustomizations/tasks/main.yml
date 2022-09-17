@@ -36,6 +36,7 @@
     dest: '/usr/share/regolith-look/gruvboxCustom'
 
 - name: regolith-look command
+  become_user: ldraney
   shell:
     cmd: regolith-look set gruvboxCustom
 
