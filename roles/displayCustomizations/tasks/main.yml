@@ -27,11 +27,11 @@
 - name: add symlink to regolith theme
   file:
     state: link
-    #owner: root
-    #group: root
-    follow: false
-    owner: ldraney
-    group: ldraney
+    owner: root
+    group: root
+    #follow: false
+    #owner: ldraney
+    #group: ldraney
     src: '/home/ldraney/github/ansible_desktop_setup/look'
     dest: '/usr/share/regolith-look/gruvboxCustom'
 
