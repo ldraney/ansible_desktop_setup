@@ -75,7 +75,7 @@
     - { src: 'zsh/zshenv', dest: '.zshenv' }
     - { src: 'vim', dest: '.vim' }
 
--name: copy ssh keys
+- name: copy ssh keys
   copy:
     src: /home/ldraney/github/sensitive/ssh
     dest: /home/ldraney/.ssh
