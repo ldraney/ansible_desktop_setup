@@ -6,8 +6,8 @@
     #type: dir
     state: directory
 
-- name: setup vpn
-  cmd: nmcli connection import type openvpn file /home/ldraney/github/sensitive/recon/vpn/openvpn_setup.ovpn
+- name: setup vpn  
+  shell: nmcli connection import type openvpn file /home/ldraney/github/sensitive/recon/vpn/openvpn_setup.ovpn
 
 - name: clone recon repos
   ignore_errors: yes
