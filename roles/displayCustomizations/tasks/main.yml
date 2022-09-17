@@ -44,7 +44,7 @@
   ignore_errors: yes
   shell:
     #cmd: regolith-look set gruvboxCustom
-    cmd: {{ item }}
+    cmd: '{{ item }}'
     #cmd: regolith-look set gruvboxCustom
   loop:
     - regolith-look set gruvboxCustom
@@ -53,5 +53,6 @@
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:5a51ec6d-9841-432b-b134-ad902343b49c/{{ item.profile }}"
     value: '{{ item.value }}'
+    #state: present
   loop:
     - { profile: 'use-transparent-background', value: 'true' }
