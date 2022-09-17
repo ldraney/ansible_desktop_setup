@@ -1,8 +1,8 @@
 #make sure git is installed
 - name: install git
- package: 
-   name: 
-     - git
+  package: 
+    name: 
+      - git
       
 - name: make directory for dotfiles
   become_user: ldraney
