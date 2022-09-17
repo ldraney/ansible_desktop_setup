@@ -74,12 +74,14 @@
     - { src: 'zsh/zsh_history', dest: '.zsh_history' }
     - { src: 'zsh/zshenv', dest: '.zshenv' }
     - { src: 'vim', dest: '.vim' }
-    - { src: 'ssh', dest: '.ssh' }
-- name: chmod 400 ssh
-  file:
-    path: /home/ldraney/.ssh
-    mode: '0400'
-    recurse: yes
+
+-name: copy ssh keys
+  copy:
+    src: /home/ldraney/github/sensitive/ssh
+    dest: /home/ldraney/.ssh
+    owner: ldraney
+    group: ldraney
+    mode: 400
       #- name: Evaluating the authentication agent & adding the keys...
       #  become_user: ldraney
       #  shell:
