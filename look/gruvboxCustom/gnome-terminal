@@ -1,4 +1,4 @@
-gnome.terminal.color0:    color_red
+gnome.terminal.color0:    color_base03
 gnome.terminal.color1:    color_red
 gnome.terminal.color2:    color_green
 gnome.terminal.color3:    color_yellow
