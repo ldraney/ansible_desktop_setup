@@ -57,3 +57,4 @@
     #state: present
   loop:
     - { profile: 'use-transparent-background', value: 'true' }
+    - { profile: 'background-transparency-percent', value: '18' }
