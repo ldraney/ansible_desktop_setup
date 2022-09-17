@@ -35,13 +35,13 @@
     key_file: /home/ldraney/.ssh/id_ed25519
     accept_hostkey: yes
 
-- name: remove files to make room for new symlinks
-  file: 
-    path: '{{ item }}'
-    state: absent
-  with_items:
-    - /home/ldraney/.oh-my-zsh
-    - /home/ldraney/.ssh
+      #- name: remove files to make room for new symlinks
+      #  file: 
+      #    path: '{{ item }}'
+      #    state: absent
+      #  with_items:
+      #    - /home/ldraney/.oh-my-zsh
+      #    - /home/ldraney/.ssh
 
 - name: dotfile symbolic links to user config
   ansible.builtin.file:
@@ -61,6 +61,7 @@
     - { src: 'customCommands', dest: '.customCommands' }
 
 - name: sensitive files symlinks
+  become_user: ldraney
   ansible.builtin.file:
     src: '/home/ldraney/github/sensitive/{{ item.src }}'
     dest: '/home/ldraney/{{ item.dest }}'
@@ -76,12 +77,14 @@
     path: /home/ldraney/.ssh
     mode: '0400'
     recurse: yes
- - name: Evaluating the authentication agent & adding the keys...
-   become_user: ldraney
-   shell: |
-     eval "$(ssh-agent)"
-     ssh-add ~/.ssh/id_rsa
-     ssh-add ~/.ssh/id_ed25519
+      #- name: Evaluating the authentication agent & adding the keys...
+      #  become_user: ldraney
+      #  shell:
+      #    cmd: {{ item }}
+      #  with_items: 
+      #    - eval "$(ssh-agent)"
+      #    - ssh-add ~/.ssh/id_rsa
+      #    - ssh-add ~/.ssh/id_ed25519
 
 - name: neovim root link
   ignore_errors: yes
