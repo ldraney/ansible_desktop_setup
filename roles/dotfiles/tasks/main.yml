@@ -45,12 +45,12 @@
 
 - name: dotfile symbolic links to user config
   ansible.builtin.file:
+    owner: ldraney
+    group: ldraney
     src: '/home/ldraney/github/dotfiles/{{ item.src }}'
     dest: '/home/ldraney/{{ item.dest }}'
     state: link
     force: true
-    owner: ldraney
-    group: ldraney
   loop:
     - { src: 'nvim/', dest: '.config/nvim' }
     - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
