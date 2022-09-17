@@ -6,5 +6,5 @@
   roles:
     - base
     - dotfiles
- #  - displayCustomizations
+    - displayCustomizations
  #  - docker
