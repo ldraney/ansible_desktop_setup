@@ -1,8 +1,4 @@
 
-#put the regolith look file into my dotfile repo and make a symlink...
-#
-#commented everything out because I think I just need to edit one REgolith file
-
 - name: copy wallpaper file
   copy: 
     src: files/wallpaper.jpg
@@ -29,8 +25,7 @@
     #src: files/login.jpg
     #dest: /home/ldraney/.config/regolith-look
 
-#if you want ot change the lockscreen background image on Ubuntu, use customCommand
-- name: change login background image on regolith
+- name: change login background image
   ansible.builtin.copy:
     src: '/home/ldraney/github/ansible_desktop_setup/files/login.jpg'
     dest: '/usr/share/backgrounds/pia21972.png'

@@ -1,19 +1,19 @@
 ---
 
 #This is because the other way wasn't upgrading!
-- name: Update apt-get repo and cache
-  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
-# - name: Upgrade all apt packages
-#   apt: upgrade=dist force_apt_get=yes
+# - name: Update apt-get repo and cache
+#   apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+#   - name: Upgrade all apt packages
+#     apt: upgrade=dist force_apt_get=yes
 
 ##I think this one is working
-#- name: update
-  #ansible.builtin.apt:
-    #update_cache: yes
+- name: update
+  ansible.builtin.apt:
+    update_cache: yes
 ##This definitely isn't working
-#- name: upgrade
-  #ansible.builtin.apt:
-    #only_upgrade: yes
+- name: upgrade
+  ansible.builtin.apt:
+    only_upgrade: yes
 
 #I was getting a Docker installation error, this fix didn't seem to do anything
 #- name: Allow release info change
@@ -38,9 +38,9 @@
     #- deb_packages # 
     - cli_tools
     
-- name: install packages
-  apt: 
-    update_cache: true
+- name: install packages round 1
+  apt:
+    update_cache: yes
     pkg: 
       - htop
       - tmux
@@ -54,64 +54,61 @@
       - make
       - feh
       - tree
-      #snap comes anyway with upgrade and is convenient for kubectl
-      - snapd         
-      #for ansible apt install deb for docker
-      - xz-utils
-      #aws stuff
-      - make 
-      - build-essential 
-      - libssl-dev 
-      - zlib1g-dev 
-      - libbz2-dev
-      - libreadline-dev
-      - libsqlite3-dev 
-      - wget 
-      - llvm 
-      - libncursesw5-dev 
-      - xz-utils 
-      - tk-dev 
-      - libxml2-dev 
-      - libxmlsec1-dev 
-      - libffi-dev 
-      - liblzma-dev 
-      # for setBackground for login script
-      - libglib2.0-dev-bin
-#what was this for? 
-#- name: Install aptitude
-  #apt:
-    #name: aptitude
-    #state: latest
-    #update_cache: true
-    #
+      - wget
+      
+      
+# - name: install packages round 2
+#   apt:
+#     update_cache: yes
+#     pkg: 
+#       #snap comes anyway with upgrade and is convenient for kubectl
+#       - snapd         
+#       #for ansible apt install deb for docker
+#       - xz-utils
+#       #aws stuff
+#       - make 
+#       - build-essential 
+#       - libssl-dev 
+#       - zlib1g-dev 
+#       - libbz2-dev
+#       - libreadline-dev
+#       - libsqlite3-dev 
+#       - wget 
+#  #for what?
+# #       - llvm 
+# #       - libncursesw5-dev 
+# #       - xz-utils 
+# #       - tk-dev 
+# #       - libxml2-dev 
+# #       - libxmlsec1-dev 
+# #       - libffi-dev 
+# #       - liblzma-dev 
+#       # for setBackground for login script
+# #       - libglib2.0-dev-bin
+# - name: Install aptitude
+#   apt:
+#     name: aptitude
+#     state: latest
+#     update_cache: true
 
-- name: Download Chrome
-  become_user: ldraney
-  get_url:
-    url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    dest: '/home/ldraney'
-- name: install Chrome
-  dpkg_selections:
-    name: google-chrome-stable_current_amd64.deb
-    selection: install
+# - name: Install required system packages for docker
+#   apt:
+#     pkg:
+#       - apt-transport-https
+#       - ca-certificates
+#       - software-properties-common
+#       - python3-pip
+#       - virtualenv
+#       - python3-setuptools
+#     state: latest
+#     update_cache: true
+#       #- ca-certificates
+#       #- curl
+#       #- gnupg
+#       #- lsb-release
+# - name: Allow release-info to change for APT repositories
+#   command: apt-get update -y --allow-releaseinfo-change
 
-- name: Install required system packages for docker
-  apt:
-    pkg:
-      - apt-transport-https
-      - ca-certificates
-      - software-properties-common
-      - python3-pip
-      - virtualenv
-      - python3-setuptools
-    state: latest
-    update_cache: true
-      #- ca-certificates
-      #- curl
-      #- gnupg
-      #- lsb-release
-- name: Allow release-info to change for APT repositories
-  command: apt-get update -y --allow-releaseinfo-change
 - name: clone ansible_desktop_setup
   become_user: ldraney
   ansible.builtin.git:
@@ -132,18 +129,19 @@
 # sudo rm /usr/local/bin/aws
 # sudo rm /usr/local/bin/aws_completer
 # sudo rm -rf /usr/local/aws-cli
-- name: download aws cli
-  get_url: 
-    url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
-    dest: /tmp/awscliv2.zip
-- name: unzip aws cli
-  unarchive: 
-    src: /tmp/awscliv2.zip
-    dest: /tmp
-    #creates: /tmp/awscliv2
-- name: run install aws CLI script
-  become: yes
-  become_user: ldraney
-  become_method: sudo
-  command: sudo bash /tmp/aws/install --update
+# - name: download aws cli
+#   get_url: 
+#     url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+#     dest: /tmp/awscliv2.zip
+# - name: unzip aws cli
+#   ignore_errors: yes
+#   unarchive: 
+#     src: /tmp/awscliv2.zip
+#     dest: /tmp
+#     #creates: /tmp/awscliv2
+# - name: run install aws CLI script
+#   become: yes
+#   become_user: ldraney
+#   become_method: sudo
+#   command: sudo bash /tmp/aws/install --update
 

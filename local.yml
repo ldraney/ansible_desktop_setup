@@ -17,13 +17,13 @@
   #gather_facts: False
   roles:
     - base
-    - displayCustomizations
-    - docker
     - dotfiles
+  # - displayCustomizations
+ #  - docker
 
-  vars: 
-    docker_files:
-      - docker-ce-cli_20.10.17~3-0~ubuntu-jammy_amd64.deb
-      - containerd.io_1.6.8-1_amd64.deb
-      - docker-ce_20.10.17~3-0~ubuntu-jammy_amd64.deb
-      - docker-compose-plugin_2.6.0~ubuntu-jammy_amd64.deb
+#   vars: 
+#     docker_files:
+#       - docker-ce-cli_20.10.17~3-0~ubuntu-jammy_amd64.deb
+#       - containerd.io_1.6.8-1_amd64.deb
+#       - docker-ce_20.10.17~3-0~ubuntu-jammy_amd64.deb
+#       - docker-compose-plugin_2.6.0~ubuntu-jammy_amd64.deb
