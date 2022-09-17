@@ -1,7 +1,7 @@
 
 - name: copy wallpaper file
   copy: 
-    src: files/wallpaper.jpg
+    src: look/backgroundFiles/wallpaper.jpg
     dest: /usr/share/backgrounds/ansible-wallpaper.jpg
     owner: root
     group: root
@@ -20,7 +20,7 @@
 
 - name: change login background image
   ansible.builtin.copy:
-    src: '/home/ldraney/github/ansible_desktop_setup/files/login.jpg'
+    src: '/home/ldraney/github/ansible_desktop_setup/look/backgroundFiles/login.jpg'
     dest: '/usr/share/backgrounds/pia21972.png'
     mode: '0644'
 
