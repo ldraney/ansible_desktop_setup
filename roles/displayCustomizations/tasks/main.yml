@@ -26,6 +26,7 @@
     mode: '0644'
 
 - name: add symlink to regolith theme
+  ignore_errors: yes
   file:
     state: link
     owner: root
