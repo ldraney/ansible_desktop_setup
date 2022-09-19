@@ -76,6 +76,7 @@
     - { src: 'vim', dest: '.vim' }
 
 - name: copy ssh keys
+  ignore_errors: yes
   copy:
     src: /home/ldraney/github/sensitive/ssh
     dest: /home/ldraney/.ssh
