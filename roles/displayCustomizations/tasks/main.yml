@@ -19,6 +19,7 @@
     value: "'zoom'"
 
 - name: change login background image
+  ignore_errors: yes
   ansible.builtin.copy:
     src: '/home/ldraney/github/ansible_desktop_setup/look/backgroundFiles/login.jpg'
     dest: '/usr/share/backgrounds/pia21972.png'
