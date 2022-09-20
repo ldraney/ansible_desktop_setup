@@ -6,8 +6,14 @@
     #type: dir
     state: directory
 
-- name: setup vpn  
-  shell: nmcli connection import type openvpn file /home/ldraney/github/sensitive/recon/vpn/openvpn_setup.ovpn
+#- name: setup vpn  
+  #shell: nmcli connection import type openvpn file /home/ldraney/github/sensitive/recon/vpn/openvpn_setup.ovpn
+
+ - name: copy ssh_config to get git clone for ssh config
+   copy:
+     src: /home/ldraney/github/sensitive/ssh_config
+     dest: /etc/ssh/
+     follow: yes
 
 - name: clone recon repos
   ignore_errors: yes

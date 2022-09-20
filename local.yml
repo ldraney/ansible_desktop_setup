@@ -4,8 +4,8 @@
   connection: local
   become: true
   roles:
-    - base
-    - dotfiles
-    - displayCustomizations
+    #- base
+    #- dotfiles
+    #- displayCustomizations
     - recon
  #  - docker
