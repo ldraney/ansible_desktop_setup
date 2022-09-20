@@ -6,8 +6,8 @@
     #type: dir
     state: directory
 
-#- name: setup vpn  
-  #shell: nmcli connection import type openvpn file /home/ldraney/github/sensitive/recon/vpn/openvpn_setup.ovpn
+- name: setup vpn  
+  shell: nmcli connection import type openvpn file /home/ldraney/github/sensitive/recon/vpn/openvpn_setup.ovpn
 
 - name: copy ssh_config to get git clone for ssh config
   copy:
@@ -15,16 +15,16 @@
     dest: /etc/ssh/
     follow: yes
 
-- name: clone recon repos
-  ignore_errors: yes
-  become_user: ldraney
-  ansible.builtin.git:
-    #repo: 'ssh://git@github.com/ldraney/dotfiles.git'
-    repo: 'ssh://git@vpn.recondynamics.com:2225/{{ item }}.git'
-    clone: yes
-    dest: /home/ldraney/recon/tv/
-    key_file: /home/ldraney/.ssh/id_rsa
-    accept_hostkey: yes
-  loop:
-    - tvapi
-    - dev-setup
+#- name: clone recon repos
+  #ignore_errors: yes
+  #become_user: ldraney
+  #ansible.builtin.git:
+    ##repo: 'ssh://git@github.com/ldraney/dotfiles.git'
+    #repo: 'ssh://git@vpn.recondynamics.com:2225/{{ item }}.git'
+    #clone: yes
+    #dest: /home/ldraney/recon/tv/
+    #key_file: /home/ldraney/.ssh/id_rsa
+    #accept_hostkey: yes
+  #loop:
+    #- tvapi
+    #- dev-setup
