@@ -1,3 +1,15 @@
+- name: see if vpn is setup yet by checking if the directory is empty (currently I only need one vpn setup)
+  find: 
+    paths: '/etc/NetworkManager/system-connections'
+  register: vpnExists
+
+- fail:
+  msg: 'there is already a vpn connection'
+  when: filesFound.matched > 0
+
+- debug: 
+    msg: 'The vpn folder is empty, installing vpn with nmcli'
+
 - name: setup vpn  
   shell: nmcli connection import type openvpn file /home/ldraney/github/sensitive/recon/vpn/openvpn_setup.ovpn
-
+  when: kkkk
