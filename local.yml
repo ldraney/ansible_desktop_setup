@@ -9,5 +9,5 @@
     #- displayCustomizations
     #- recon
     #- zshConfigs
-    - setupTvp
+    - tvp
  #  - docker
