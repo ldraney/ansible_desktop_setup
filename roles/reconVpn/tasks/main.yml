@@ -14,5 +14,5 @@
   #when: vpnExists.matched > 0
 
 - name: setup vpn  
-  shell: nmcli connection import type openvpn file /home/ldraney/github/sensitive/recon/vpn/openvpn_setup.ovpn
-  when: vpnExists.matched > 0
+  shell: nmcli connection load type openvpn file /home/ldraney/github/sensitive/recon/vpn/openvpn_setup.ovpn
+  #when: vpnExists.matched > 0
