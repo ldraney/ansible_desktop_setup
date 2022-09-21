@@ -10,7 +10,7 @@
 
 - debug: 
     #msg: 'The vpn folder is empty, installing vpn with nmcli'
-    msg: vpnExists
+    var: vpnExists
   #when: vpnExists.matched > 0
 
 #- name: setup vpn  
