@@ -11,7 +11,7 @@
 
 - name: install pip2
   become_user: ldraney
-  shell: 'sudo python2 get-pip.py'
+  shell: 'sudo python2 /home/ldraney/recon/tv/dev-setup/setupTvp/get-pip.py'
 
 - name: Run a install script using python2 to install pip2
   ansible.builtin.script: /home/ldraney/recon/tv/dev-setup/setupTvp/get-pip.py
