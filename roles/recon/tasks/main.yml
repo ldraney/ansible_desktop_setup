@@ -1,31 +1,21 @@
-
-- name: mkdir for recon 
+- name: make symlinks for Recon tv repos
   become_user: ldraney
   file:
-    path: /home/ldraney/recon/tv/
-    #type: dir
-    state: directory
+    src: /mnt/hgfs/VMShare/Recon
+    dest: /home/ldraney/recon
+    state: link
 
-- name: setup vpn  
-  shell: nmcli connection import type openvpn file /home/ldraney/github/sensitive/recon/vpn/openvpn_setup.ovpn
+#- name: mkdir for recon 
+  #become_user: ldraney
+  #file:
+    #path: /home/ldraney/recon/tv/
+    ##type: dir
+    #state: directory
 
-- name: copy ssh_config to get git clone for ssh config
+- name: Ubuntu 2204 needs this to have same key type as old Recon Git server
   lineinfile:
     insertafter: EOF
     state: present
     line: '    PubkeyAcceptedKeyTypes +ssh-rsa'
     path: /etc/ssh/ssh_config
 
-#- name: clone recon repos
-  #ignore_errors: yes
-  #become_user: ldraney
-  #ansible.builtin.git:
-    ##repo: 'ssh://git@github.com/ldraney/dotfiles.git'
-    #repo: 'ssh://git@vpn.recondynamics.com:2225/{{ item }}.git'
-    #clone: yes
-    #dest: /home/ldraney/recon/tv/
-    #key_file: /home/ldraney/.ssh/id_rsa
-    #accept_hostkey: yes
-  #loop:
-    #- tvapi
-    #- dev-setup
