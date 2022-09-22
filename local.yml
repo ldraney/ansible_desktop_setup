@@ -4,11 +4,11 @@
   connection: local
   become: true
   roles:
-    #- base
+    - base
     #- dotfiles
     #- displayCustomizations
-    - recon
+    # - recon
     #- zshConfigs
     #- tvp
  #  - docker
-    - reconVpn
+#   - reconVpn
