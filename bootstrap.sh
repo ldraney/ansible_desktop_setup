@@ -4,7 +4,7 @@ set -e    #I need to restart computer after this command for vm shared folder to
 # this gives an error
 echo vmhgfs-fuse /mnt/hgfs  fuse defaults,allow_other   0   0 | sudo tee -a /etc/fstab
 sudo mount -a
-mkdir ~/.ssh
+mkdir -p /home/ldraney/.ssh
 cp -r /mnt/hgfs/VMShare/ssh/* /home/ldraney/.ssh/
 chmod 400 /home/ldraney/.ssh/*
 chown -R ldraney:ldraney /home/ldraney/.ssh
