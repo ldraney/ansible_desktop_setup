@@ -63,6 +63,8 @@
     - { src: 'git/gitconfig', dest: '.gitconfig' }
     - { src: 'zsh/zshenv', dest: '.zshenv' }
     - { src: 'customCommands', dest: '.customCommands' }
+    - { src: 'ansible.cfg', dest: '.ansible.cfg' }
+
 - name: delete old .vim directory
   file:
     state: absent
