@@ -12,6 +12,7 @@ chown -R ldraney:ldraney /home/ldraney/.ssh
 #rest of the install
 apt-get update
 apt-get upgrade -y
+sudo apt-get install -y ansible
 
 eval "$(ssh-agent -s)"
 ssh-add /home/ldraney/.ssh/id_ed25519
