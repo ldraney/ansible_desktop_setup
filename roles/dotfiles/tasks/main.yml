@@ -64,7 +64,10 @@
     - { src: 'zsh/zshenv', dest: '.zshenv' }
     - { src: 'customCommands', dest: '.customCommands' }
     - { src: 'ansible.cfg', dest: '.ansible.cfg' }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6f80516 (ansible cfg for pulling sensitive repo)
 - name: delete old .vim directory
   file:
     state: absent
@@ -82,6 +85,7 @@
     - { src: 'zsh/zsh_history', dest: '.zsh_history' }
     - { src: 'zsh/zshenv', dest: '.zshenv' }
     - { src: 'vim', dest: '.vim' }
+    - { src: 'ansible/ansible.cfg', dest: '.ansible.cfg' }
 
 #- name: copy ssh keys
   #ignore_errors: yes
