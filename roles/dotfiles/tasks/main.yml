@@ -69,6 +69,7 @@
     path: /home/ldraney/.vim
 
 - name: sensitive files symlinks
+  ignore_errors: yes
   become_user: ldraney
   ansible.builtin.file:
     src: '/home/ldraney/github/sensitive/{{ item.src }}'
