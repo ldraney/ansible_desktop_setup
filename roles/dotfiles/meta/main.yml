@@ -1,8 +1,8 @@
 ---
 dependencies:
-  - role: '{{ item }}'
-with_items:
-  - base
+  - role: base
+  #with_items:
+    #- base
     #vars:
       #some_parameter: 3
   #- role: apache
