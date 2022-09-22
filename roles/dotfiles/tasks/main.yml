@@ -20,6 +20,7 @@
   ansible.builtin.git:
     repo: 'ssh://git@github.com/ldraney/dotfiles.git'
     clone: yes
+    update: yes
     dest: /home/ldraney/github/dotfiles
     key_file: /home/ldraney/.ssh/id_ed25519
     accept_hostkey: yes
@@ -29,6 +30,7 @@
   become_user: ldraney
   ansible.builtin.git:
     repo: 'ssh://git@github.com/ldraney/sensitive.git'
+    update: yes
     clone: yes
     dest: /home/ldraney/github/sensitive
     key_file: /home/ldraney/.ssh/id_ed25519
