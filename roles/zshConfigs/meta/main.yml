@@ -1,9 +1,10 @@
 ---
 dependencies:
-  - role: '{{ target }}'
-  loop:
-    - base
-    - dotfiles
+  - role: base
+  - role: dotfiles
+  #loop:
+    #- base
+    #- dotfiles
     #- recon
     #vars:
       #some_parameter: 3
