@@ -4,6 +4,7 @@
     src: /mnt/hgfs/VMShare/Recon
     dest: /home/ldraney/recon
     state: link
+    force: true
 
 #- name: mkdir for recon 
   #become_user: ldraney
