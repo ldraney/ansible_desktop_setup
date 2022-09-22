@@ -1,7 +1,7 @@
 #!/bin/bash
 #vmware shared folder
-echo vmhgfs-fuse /mnt/hgfs  fuse defaults,allow_other   0   0 | sudo tee -a /etc/fstab
-sudo mount -a
+# echo vmhgfs-fuse /mnt/hgfs  fuse defaults,allow_other   0   0 | sudo tee -a /etc/fstab
+# sudo mount -a
 
 #rest of the install
 apt-get update
