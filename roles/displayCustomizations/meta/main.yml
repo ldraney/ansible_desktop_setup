@@ -1,7 +1,7 @@
----
-dependencies:
-  - role: base
-  - role: dotfiles
+#---
+#dependencies:
+  #- role: base
+  #- role: dotfiles
   #loop:
     #- base
     #- dotfiles
