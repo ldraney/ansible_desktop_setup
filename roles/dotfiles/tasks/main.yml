@@ -63,6 +63,10 @@
     - { src: 'git/gitconfig', dest: '.gitconfig' }
     - { src: 'zsh/zshenv', dest: '.zshenv' }
     - { src: 'customCommands', dest: '.customCommands' }
+- name: delete old .vim directory
+  file:
+    state: absent
+    path: /home/ldraney/.vim
 
 - name: sensitive files symlinks
   become_user: ldraney
