@@ -13,7 +13,7 @@
     ##type: dir
     #state: directory
 
-- name: Ubuntu 2204 needs this to have same key type as old Recon Git server
+- name: Ubuntu 2204 needs this to have same key type as old Recon Git server, necessary for id_rsa
   lineinfile:
     insertafter: EOF
     state: present

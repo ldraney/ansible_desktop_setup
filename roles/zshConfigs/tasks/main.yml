@@ -1,10 +1,9 @@
-
-- name: mkdir for recon 
-  become_user: ldraney
-  file:
-    path: /home/ldraney/recon/tv/
-    #type: dir
-    state: directory
+#- name: mkdir for recon 
+  #become_user: ldraney
+  #file:
+    #path: /home/ldraney/recon/tv/
+    ##type: dir
+    #state: directory
 
 - name: setup vpn  
   shell: nmcli connection import type openvpn file /home/ldraney/github/sensitive/recon/vpn/openvpn_setup.ovpn
