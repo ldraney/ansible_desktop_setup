@@ -5,10 +5,10 @@
   become: true
   roles:
     - base
-    #- dotfiles
-    #- displayCustomizations
-    # - recon
-    #- zshConfigs
+    - dotfiles
+    - displayCustomizations
+      #- recon
+    - zshConfigs
     #- tvp
  #  - docker
 #   - reconVpn
