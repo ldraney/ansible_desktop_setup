@@ -8,8 +8,8 @@
     - dotfiles
     - zshConfigs
     - recon
-    #   - reconVpn
-    #- displayCustomizations
+    - displayCustomizations
+    #- reconVpn
     #- tvp
- #  - docker
+    #- docker
 
