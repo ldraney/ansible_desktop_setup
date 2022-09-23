@@ -25,21 +25,25 @@
     dest: '/usr/share/backgrounds/pia21972.png'
     mode: '0644'
 
-- name: add symlink to regolith theme
-  ignore_errors: yes
-  file:
-    state: link
-    owner: root
-    group: root
-    follow: false
-    #owner: ldraney
-    #group: ldraney
-    src: '/home/ldraney/github/ansible_desktop_setup/look/gruvboxCustom'
-    dest: '/usr/share/regolith-look/gruvboxCustom'
+#- name: add symlink to regolith theme
+  #ignore_errors: yes
+  #file:
+    #state: link
+    #owner: root
+    #group: root
+    #follow: false
+    ##owner: ldraney
+    ##group: ldraney
+    #src: '/home/ldraney/github/ansible_desktop_setup/look/gruvboxCustom'
+    #dest: '/usr/share/regolith-look/gruvboxCustom'
 #- name: add symlink to regolith theme
   #copy:
     #src: '/home/ldraney/github/ansible_desktop_setup/look'
-    #dest: '/usr/share/regolith-look/gruvboxCustom'
+    #dest: '/usr/share/regolith-look/gruvboxCustom'-
+- name: copy gruvboxCustom to /usr/share/regolith-look/
+  copy:
+    src: '/home/ldraney/github/ansible_desktop_setup/look/gruvboxCustom'
+    dest: '/usr/share/regolith-look/'
 
 - name: regolith-look commands
   become_user: ldraney
