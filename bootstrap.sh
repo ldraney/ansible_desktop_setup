@@ -1,11 +1,12 @@
 #!/bin/bash
 #vmware shared folder
-set -e    #I need to restart computer after this command for vm shared folder to be setup right, only if
+#set -e    #I need to restart computer after this command for vm shared folder to be setup right, only if
 # this gives an error
-echo vmhgfs-fuse /mnt/hgfs  fuse defaults,allow_other   0   0 | sudo tee -a /etc/fstab
-sudo mount -a
-mkdir -p $HOME/.ssh
-cp -r /mnt/hgfs/VMShare/ssh/* $HOME/.ssh/
+#echo vmhgfs-fuse /mnt/hgfs  fuse defaults,allow_other   0   0 | sudo tee -a /etc/fstab
+#sudo mount -a
+#mkdir -p $HOME/.ssh
+#cp -r /mnt/hgfs/VMShare/ssh/* $HOME/.ssh/
+
 chmod 400 $HOME/.ssh/*
 chown -R ldraney:ldraney $HOME/.ssh
 
