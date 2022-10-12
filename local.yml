@@ -7,7 +7,7 @@
     - base
     - dotfiles
     - zshConfigs
-    - recon
+#   - recon
 #     - displayCustomizations
     - reconVpn
     #- tvp
